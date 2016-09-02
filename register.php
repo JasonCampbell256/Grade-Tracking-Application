@@ -1,4 +1,5 @@
 <?php 
+    require('config.php');
 	include("banner.php");
 	session_start();
 ?>

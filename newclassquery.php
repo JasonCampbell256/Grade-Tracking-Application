@@ -5,12 +5,12 @@ require('functions.php');
 session_start();
 
 if(isset($_POST['submit'])){
-	$subject = mysql_escape_string($_POST['subject']);
-	$term = mysql_escape_string($_POST['term']);
-	$year = mysql_escape_string($_POST['year']);
-	$staffid = mysql_escape_string($_SESSION['id']);
+	$subject = mysqli_real_escape_string($link, $_POST['subject']);
+	$term = mysqli_real_escape_string($link, $_POST['term']);
+	$year = mysqli_real_escape_string($link, $_POST['year']);
+	$staffid = mysqli_real_escape_string($link, $_SESSION['id']);
 
-	mysql_query("INSERT INTO `Classes` (subject, class_id, term, year, staff_id) VALUES ('$subject', NULL, '$term', '$year', '$staffid') ") or die(mysql_error());
+	mysqli_query($link,"INSERT INTO `Classes` (subject, class_id, term, year, staff_id) VALUES ('$subject', NULL, '$term', '$year', '$staffid') ") or die(mysql_error());
 	header('Location: viewclass.php');
 	}
 ?>

@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -17,12 +18,12 @@
 		
 		<?php
 		$classID  = $_GET['classID'];
-		$tname = mysql_escape_string($_POST['tname']);
-		$percentage = mysql_escape_string($_POST['percentage']);
+		$tname = mysqli_real_escape_string($link, $_POST['tname']);
+		$percentage = mysqli_real_escape_string($link, $_POST['percentage']);
 			
 		if(isset($_POST['submit'])){
 					
-				mysql_query("INSERT INTO `Assignment_Types` (`class_id`, `type_id`, `percentage`) 
+				mysqli_query($link,"INSERT INTO `Assignment_Types` (`class_id`, `type_id`, `percentage`) 
 				VALUES ('$classID', '$tname', '$percentage')") or die(mysql_error());
 
 			}

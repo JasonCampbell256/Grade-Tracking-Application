@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -23,9 +24,9 @@
 					
 					$id = $_SESSION['id'];
 					$sql = "SELECT * FROM `Classes` WHERE `staff_id` = '$id'";
-					$classQuery = mysql_query($sql);
+					$classQuery = mysqli_query($link,$sql);
 					
-					while($test = mysql_fetch_assoc($classQuery)){
+					while($test = mysqli_fetch_assoc($classQuery)){
 						?>
 						<a href="remclass.php?page=class&classID=<?php echo $test['class_id']; ?>"><?php echo "<li>".$test['subject']."</li>"; ?></a>
 						<?php
@@ -49,7 +50,7 @@
 					if(isset($_GET['remClassID'])){
 						$remID = $_GET['remClassID'];
 						$sql = "DELETE FROM `Classes` WHERE `class_id` = '$remID'";
-						mysql_query($sql) or die(mysql_error());
+						mysqli_query($link,$sql) or die(mysql_error());
 						echo 'Deleted! <a href="viewclass.php">Click here to return.<br /></a>';
 					}
 				

@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -16,8 +17,8 @@
 			</tr>
 			<?php 
 				$classID  = $_GET['classID']; 	
-				$result = mysql_query("SELECT * FROM `Assignment_Types` WHERE `class_id` = '$classID'");
-				while( $row = mysql_fetch_array($result)){
+				$result = mysqli_query($link,"SELECT * FROM `Assignment_Types` WHERE `class_id` = '$classID'");
+				while( $row = mysqli_fetch_array($result)){
 				printf("<tr><td>%s</td><td>%s</td></tr>", $row["type_id"], $row["percentage"]);
 				}
 	

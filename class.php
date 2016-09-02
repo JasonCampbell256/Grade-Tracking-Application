@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -13,9 +14,9 @@
 		if(isset($_GET['classID'])){
 		$classID = $_GET['classID'];
 		$sql = "SELECT * FROM `Classes` WHERE `class_ID` = '$classID'";
-		$query = mysql_query($sql);
+		$query = mysqli_query($link,$sql);
 		
-		$blah = mysql_fetch_assoc($query);
+		$blah = mysqli_fetch_assoc($query);
 		
 		echo "<h3>Class Administration: ".$blah['subject']."</h3>";
 

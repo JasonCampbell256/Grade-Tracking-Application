@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -21,17 +22,26 @@
 					
 					$id = $_SESSION['id'];
 					$sql = "SELECT * FROM `Classes` WHERE `staff_id` = '$id'";
-					$classQuery = mysql_query($sql);
-					
-					while($test = mysql_fetch_assoc($classQuery)){
-						?>
-						<a href="class.php?page=class&classID=<?php echo $test['class_id']; ?>"><?php echo "<li>".$test['subject']."</li>"; ?></a>
+					$classQuery = mysqli_query($link, $sql);
+                
+					if ($classQuery){
+				        while($test = mysqli_fetch_assoc($classQuery)){
+            ?>
+                            <a href="class.php?page=class&classID=<?php echo $test['class_id']; ?>"><?php echo "<li>".$test['subject']."</li>"; ?></a>
 						
 						
 						
-						<?php
-						
+            <?php
+                        }
 					}
+                
+                    else {
+                        $error = mysqli_error($link);
+                        echo $error;
+                        echo "No result";
+                    }
+                    mysqli_free_result($classQuery);
+                        
 		
 					?>
 					<p />

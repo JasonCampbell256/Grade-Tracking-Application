@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -16,15 +17,15 @@
 			Student: <select name="student_id">
 				<?php 
                     //Query all students into class and create an arry
-				    $result = mysql_query("SELECT `student_id` FROM `Roster` WHERE `class_id` = '$classID'");
-				    while( $row = mysql_fetch_assoc( $result)){
+				    $result = mysqli_query($link,"SELECT `student_id` FROM `Roster` WHERE `class_id` = '$classID'");
+				    while( $row = mysqli_fetch_assoc( $result)){
 				        $new_array[] = $row["student_id"]; // Inside while loop
 				    }	
 				    $imp = implode(",", $new_array);
                     
                     //Display in the list, all students in the class
-                    $result = mysql_query("SELECT * FROM `Students` WHERE `student_id` IN($imp)");
-				    while( $row = mysql_fetch_array($result)){
+                    $result = mysqli_query($link,"SELECT * FROM `Students` WHERE `student_id` IN($imp)");
+				    while( $row = mysqli_fetch_array($result)){
 				        printf("<option value=\"%s\">%s, %s</option>", $row["student_id"], $row["last_name"], $row["first_name"]);
 				    }
 				?>
@@ -33,8 +34,8 @@
 			Assignment: <select name="assignment_id">
                 <?php 
                     //Query all assignments in the class and display them in the list
-				    $result = mysql_query("SELECT * FROM `Assignments` WHERE `class_id` = '$classID'");
-				    while( $row = mysql_fetch_array($result)){
+				    $result = mysqli_query($link,"SELECT * FROM `Assignments` WHERE `class_id` = '$classID'");
+				    while( $row = mysqli_fetch_array($result)){
 				        printf("<option value=\"%s\">%s, %s</option>", $row["assignment_id"], $row["assignment_name"], $row["assignment_id"]);
                     }
                 ?>  
@@ -46,11 +47,11 @@
         
         <?php              
             if(isset($_POST['submit'])){
-                $studentID = mysql_escape_string($_POST['student_id']);
-                $assignmentID = mysql_escape_string($_POST['assignment_id']);
-                $score = mysql_escape_string($_POST['score']);
+                $studentID = mysqli_real_escape_string($link, $_POST['student_id']);
+                $assignmentID = mysqli_real_escape_string($link, $_POST['assignment_id']);
+                $score = mysqli_real_escape_string($link, $_POST['score']);
 					
-                mysql_query("INSERT INTO `Scores` (`student_id`, `assignment_id`, `score`) 
+                mysqli_query($link,"INSERT INTO `Scores` (`student_id`, `assignment_id`, `score`) 
                 VALUES ('$studentID', '$assignmentID', '$score')") or die(mysql_error());
             }
         ?>           

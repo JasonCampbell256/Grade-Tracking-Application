@@ -19,8 +19,8 @@
 			
 			
 				$uname = $_SESSION['uname'];	
-				$sql =  mysql_query("SELECT `fname` FROM `Users` WHERE `username` = '$uname'");
-				$fname = mysql_fetch_object($sql);
+				$sql =  mysqli_query($link,"SELECT `fname` FROM `Users` WHERE `username` = '$uname'");
+				$fname = mysqli_fetch_object($sql);
 				$fname = $fname->fname;
 				echo $fname;
 				

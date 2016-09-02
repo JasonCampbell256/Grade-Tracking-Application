@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -14,13 +15,13 @@
             <tr><td>ID</td></td><td>Name</td><td>Type</td></tr>
 			<?php
 			$classID = $_GET['classID'];
-			$result = mysql_query("SELECT * FROM `Assignment_Types` WHERE `class_id` = '$classID'");
-			while( $row = mysql_fetch_assoc( $result)){
+			$result = mysqli_query($link,"SELECT * FROM `Assignment_Types` WHERE `class_id` = '$classID'");
+			while( $row = mysqli_fetch_assoc( $result)){
 				$new_array[] = $row["type_id"]; // Inside while loop
 				}
 				$imp = "'".implode("', '", $new_array) ."'";
-			$result = mysql_query("SELECT * FROM `Assignments` WHERE (`type` IN($imp))");
-			while( $row = mysql_fetch_array($result)){
+			$result = mysqli_query($link,"SELECT * FROM `Assignments` WHERE (`type` IN($imp))");
+			while( $row = mysqli_fetch_array($result)){
 				printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $row["assignment_id"], $row["assignment_name"], $row["type"]);
 			}
 		

@@ -1,9 +1,21 @@
 <?php 
 session_start();
 
+function mysqli_result($res,$row=0,$col=0){
+    $numrows = mysqli_num_rows($res);
+    if ($numrows && $row <= ($numrows-1) && $row >=0){
+        mysqli_data_seek($res,$row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col])){
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
 function adminCheck(){
 	$id = $_SESSION['id'];
-	if($id != "5221"){
+	if(!$id == "5223"){
 		header('Location: gta.php?adminerr');
 		echo "You do not have permission to view this page! Ask your database manager for authorization.<p>";
 	}
@@ -45,8 +57,8 @@ function notAuth(){
 //Returns user's first name
 function firstName(){
 	$uname = $_SESSION['uname'];	
-	$sql =  mysql_query("SELECT `fname` FROM `Users` WHERE `username` = '$uname'");
-	$fname = mysql_fetch_object($sql);
+	$sql =  mysqli_query($link, "SELECT `fname` FROM `Users` WHERE `username` = '$uname'");
+	$fname = mysqli_fetch_object($sql);
 	$fname = $fname->fname;
 	return $fname;
 }
@@ -54,8 +66,8 @@ function firstName(){
 
 //Makes sure the user is not trying to use an existing username
 function unameCheck($uname){
-		$check = mysql_query("SELECT * FROM users WHERE uname = '$uname'");
-			if(mysql_num_rows($check) > 0){
+		$check = mysqli_query($link, "SELECT * FROM users WHERE uname = '$uname'");
+			if(mysqli_num_rows($check) > 0){
 				echo "Sorry, that username is taken.";
 				exit();
 			}
@@ -64,8 +76,8 @@ function unameCheck($uname){
 
 //Makes sure the user is not trying to use an existing email
 function emailCheck($email){
-		$check = mysql_query("SELECT * FROM users WHERE email = '$email'");
-			if(mysql_num_rows($check) > 0){
+		$check = mysqli_query($link, "SELECT * FROM users WHERE email = '$email'");
+			if(mysqli_num_rows($check) > 0){
 				echo "Sorry, that email address is taken.";
 				exit();
 			}

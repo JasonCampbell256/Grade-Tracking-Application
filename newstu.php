@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	adminCheck();
 	authHead();
 ?>
@@ -30,21 +31,21 @@
 			</form>
 			
 			<?php
-			$fname = mysql_escape_string($_POST['fname']);
-			$mname = mysql_escape_string($_POST['mname']);
-			$lname = mysql_escape_string($_POST['lname']);
-			$add1 = mysql_escape_string($_POST['add1']);
-			$add2 = mysql_escape_string($_POST['add2']);
-			$city = mysql_escape_string($_POST['city']);
-			$state = mysql_escape_string($_POST['state']);
-			$zip = mysql_escape_string($_POST['zip']);
-			$phone = mysql_escape_string($_POST['phone']);
-			$dob = mysql_escape_string($_POST['dob']);
-			$gender = mysql_escape_string($_POST['gender']);
+			$fname = mysqli_real_escape_string($link, $_POST['fname']);
+			$mname = mysqli_real_escape_string($link, $_POST['mname']);
+			$lname = mysqli_real_escape_string($link, $_POST['lname']);
+			$add1 = mysqli_real_escape_string($link, $_POST['add1']);
+			$add2 = mysqli_real_escape_string($link, $_POST['add2']);
+			$city = mysqli_real_escape_string($link, $_POST['city']);
+			$state = mysqli_real_escape_string($link, $_POST['state']);
+			$zip = mysqli_real_escape_string($link, $_POST['zip']);
+			$phone = mysqli_real_escape_string($link, $_POST['phone']);
+			$dob = mysqli_real_escape_string($link, $_POST['dob']);
+			$gender = mysqli_real_escape_string($link, $_POST['gender']);
 			
 			if(isset($_POST['submit'])){
 					
-					mysql_query("INSERT INTO `Students` (`first_name`, `middle_name`, `last_name`, `address_line1`, `address_line2`, `city`, `state`, `zip`, `phone`, `dob`, `gender`) 
+					mysqli_query($link,"INSERT INTO `Students` (`first_name`, `middle_name`, `last_name`, `address_line1`, `address_line2`, `city`, `state`, `zip`, `phone`, `dob`, `gender`) 
 					VALUES ('$fname', '$mname', '$lname', '$add1', '$add2', '$city', '$state', '$zip', '$phone', '$dob', '$gender')") or die(mysql_error());
 					
 					header('Location: gta.php');

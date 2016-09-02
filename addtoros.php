@@ -1,5 +1,6 @@
 <?php
 	require('functions.php');
+    require('config.php');
 	authHead();
 ?>
 <html>
@@ -16,12 +17,12 @@
 		</form>
 		
 		<?php
-		$studentID = mysql_escape_string($_POST['student_id']);
+		$studentID = mysqli_real_escape_string($link, $_POST['student_id']);
 		$classID  = $_GET['classID'];
 			
 		if(isset($_POST['submit'])){
 					
-				mysql_query("INSERT INTO `Roster` (`student_id`, `class_id`) 
+				mysqli_query($link,"INSERT INTO `Roster` (`student_id`, `class_id`) 
 				VALUES ('$studentID', '$classID')") or die(mysql_error());
 
 			}
