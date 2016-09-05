@@ -1,3 +1,6 @@
+<!-- This is a poorly named file.
+More appropriate name would be regsql.php
+-->
 <?php
 require('config.php');
 require('functions.php');

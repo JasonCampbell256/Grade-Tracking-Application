@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 	<head>
 		<title>Grade Tracking Application - Help</title>
@@ -5,12 +6,16 @@
 	</head>
 		
 	<body>
-	<?php 
-			session_start();
-			require('config.php');
-			include("banner.php");
-    ?>
+        <div id="wrapper">
+            <header>
+                <?php
+                    session_start();
+                    require('config.php');
+                    include("banner.php");
+                ?>
+            </header>
 			
+            <article id="one">
 
 				<h4>Registration</h4>
                     Before using the application, instructors must first create an account. Click on the registration link
@@ -32,8 +37,8 @@
                     To view students in your class, click the "View Roster" link in the "View Classes" screen. This page will 
                     list all students assigned to the course. To add students, click the "Add Student to Roster" link, and enter 
                     the student id associated with the student. <p>
-        
-                
-                    
+              
+            </article>
+        </div>                
 	</body>
 </html> 

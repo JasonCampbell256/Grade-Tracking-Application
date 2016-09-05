@@ -1,8 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>Delete Classes - Grade Tracking Application</title>
@@ -10,11 +6,19 @@
 	</head>
 		
 	<body>
-		<ul>
-		<?php			
-			//Content goes in this if statement
-				
-			if(!isset($_GET['page'])){
+        <div id="wrapper">
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+            
+            <article id="one">
+                <ul>
+                    <?php
+                    if(!isset($_GET['page'])){
 				
 					echo "Choose a class to delete<br />";
 					//Fetches user's first name from DB and displays it
@@ -32,37 +36,28 @@
 						<?php
 						
 					}
-					
-					
-					
-					exit();
+					exit();	
+                    }else{
+                        $remID = $_GET['classID'];
+                        if(isset($_GET['classID'])){
+                            $remID = $_GET['classID'];?>
+                            Are you sure you want to remove this class?<br />
+                            <a href="remclass.php?page=class&remClassID=<?php echo $remID; ?>">Yes<br/></a>
+                            <a href="viewclass.php">No<br /></a>
+                    <?php	}
 
-			
-			}else{
-				$remID = $_GET['classID'];
-				if(isset($_GET['classID'])){
-					$remID = $_GET['classID'];?>
-					Are you sure you want to remove this class?<br />
-					<a href="remclass.php?page=class&remClassID=<?php echo $remID; ?>">Yes<br/></a>
-					<a href="viewclass.php">No<br /></a>
-			<?php	}
-				
-					if(isset($_GET['remClassID'])){
-						$remID = $_GET['remClassID'];
-						$sql = "DELETE FROM `Classes` WHERE `class_id` = '$remID'";
-						mysqli_query($link,$sql) or die(mysql_error());
-						echo 'Deleted! <a href="viewclass.php">Click here to return.<br /></a>';
-					}
-				
-			}
-				
-		?>
-		</ul>
-			
-				
-				
-			
-		
-		
+                            if(isset($_GET['remClassID'])){
+                                $remID = $_GET['remClassID'];
+                                $sql = "DELETE FROM `Classes` WHERE `class_id` = '$remID'";
+                                mysqli_query($link,$sql) or die(mysql_error());
+                                echo 'Deleted! <a href="viewclass.php">Click here to return.<br /></a>';
+                            }
+
+                    }
+
+                ?>
+                </ul>
+			</article>
+        </div>
 	</body>
 </html>

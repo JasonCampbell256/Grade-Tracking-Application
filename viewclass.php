@@ -1,8 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>View Classes - Grade Tracking Application</title>
@@ -10,6 +6,16 @@
 	</head>
 		
 	<body>
+        <div id="wrapper">
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+            
+            <article id="one">
 		<ul>
 		<?php			
 			//Content goes in this if statement
@@ -56,12 +62,7 @@
 				
 		?>
 		</ul>
-		
-			
-				
-				
-			
-		
-		
+                </article>
+        </div>
 	</body>
 </html>

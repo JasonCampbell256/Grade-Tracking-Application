@@ -1,8 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>New Assignment - Grade Tracking Application</title>
@@ -10,8 +6,19 @@
 	</head>
 		
 	<body>
-		<?php $classID  = $_GET['classID']; ?>
-			<form method="POST">
+        <div id="wrapper">
+            
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+            
+            <article id= "one">
+                <?php $classID  = $_GET['classID']; ?>
+            <form method="POST">
 			Assignment Name: <input type="text" name="assname" /><br />
 			Assignment Type: <select name="tname">
 									<?php 
@@ -40,7 +47,7 @@
 			
 			?>
 		
-		
-	
+            </article> 
+        </div>
 	</body>
 </html>

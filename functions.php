@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require ('config.php');
 
 function mysqli_result($res,$row=0,$col=0){
     $numrows = mysqli_num_rows($res);
@@ -56,15 +57,16 @@ function notAuth(){
 
 //Returns user's first name
 function firstName(){
-	$uname = $_SESSION['uname'];	
+	$uname = $_SESSION['uname'];
 	$sql =  mysqli_query($link, "SELECT `fname` FROM `Users` WHERE `username` = '$uname'");
 	$fname = mysqli_fetch_object($sql);
 	$fname = $fname->fname;
 	return $fname;
+    echo $fname;
 }
 
 
-//Makes sure the user is not trying to use an existing username
+//Makes sure the user is not trying to register an existing username
 function unameCheck($uname){
 		$check = mysqli_query($link, "SELECT * FROM users WHERE uname = '$uname'");
 			if(mysqli_num_rows($check) > 0){
@@ -74,7 +76,7 @@ function unameCheck($uname){
 }
 
 
-//Makes sure the user is not trying to use an existing email
+//Makes sure the user is not trying to register an existing email
 function emailCheck($email){
 		$check = mysqli_query($link, "SELECT * FROM users WHERE email = '$email'");
 			if(mysqli_num_rows($check) > 0){

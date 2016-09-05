@@ -1,9 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	adminCheck();
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>New Student - Grade Tracking Application</title>
@@ -11,24 +6,33 @@
 	</head>
 		
 	<body>
+        <div id="wrapper">
 		
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    adminCheck();
+                    authHead();
+                ?>
+            </header>
 		
-		
-		<form method="POST">
-			First Name: <input type = "text" name="fname" /> <br />
-			Middle Name: <input type="text" name="mname" /> <br />
-			Last Name: <input type = "text" name="lname" /> <br />
-			Address Line 1: <input type = "text" name="add1" /> <br />
-			Address Line 2: <input type = "text" name="add2" /> <br />
-			City: <input type = "text" name="city" /> <br />
-			State: <input type="text" name="state" /> <br />
-			ZIP Code: <input type="text" name="zip" /> <br />
-			Phone: <input type="text" name="phone" /> <br />
-			Date of Birth: <input type="text" name="dob" /> <br />
-			Gender: <input type="text" name="gender" /> <br />
+            <article id="one">
+                <form method="POST">
+                    First Name: <input type = "text" name="fname" /> <br />
+                    Middle Name: <input type="text" name="mname" /> <br />
+                    Last Name: <input type = "text" name="lname" /> <br />
+                    Address Line 1: <input type = "text" name="add1" /> <br />
+                    Address Line 2: <input type = "text" name="add2" /> <br />
+                    City: <input type = "text" name="city" /> <br />
+                    State: <input type="text" name="state" /> <br />
+                    ZIP Code: <input type="text" name="zip" /> <br />
+                    Phone: <input type="text" name="phone" /> <br />
+                    Date of Birth: <input type="text" name="dob" /> <br />
+                    Gender: <input type="text" name="gender" /> <br />
 	
-			<input type="submit" value="Register" name="submit" />
-			</form>
+			         <input type="submit" value="Register" name="submit" />
+			     </form>
 			
 			<?php
 			$fname = mysqli_real_escape_string($link, $_POST['fname']);
@@ -52,11 +56,7 @@
 			}
 			
 			?>
-			
-				
-				
-			
-		
-		
+            </article>
+        </div>
 	</body>
 </html>

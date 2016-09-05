@@ -1,8 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>Create New Assignment Type - Grade Tracking Application</title>
@@ -10,6 +6,16 @@
 	</head>
 		
 	<body>
+        <div id = "wrapper">
+            <header>
+            <?php
+                require('functions.php');
+                require('config.php');
+                authHead();
+            ?>
+            </header>
+        
+        <article id="one">    
 		<form method="POST">
 		Assignment Type (Quiz, Test, etc): <input type="text" name="tname" /><br />
 		Percentage of Final Grade: <input type="text" name="percentage" /><br />
@@ -29,7 +35,7 @@
 			}
 			
 			?>
-
-		
+            </article>
+        </div>
 	</body>
 </html>

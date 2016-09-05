@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 require('config.php');
 require('functions.php');
-session_start();
+
 
 if(isset($_POST['submit'])){
 	$subject = mysqli_real_escape_string($link, $_POST['subject']);

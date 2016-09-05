@@ -1,3 +1,4 @@
+<!doctype html>
 <?php 
 session_start();
 require('config.php');
@@ -19,8 +20,10 @@ if(isset($_POST['submit'])){
 				if (mysqli_num_rows($idcheck) > 0){
 					$_SESSION['id']=$id;
 				}
-			header('Location: gta.php');
-			exit();
+			//header('Location: gta.php');
+            $URL="gta.php";
+            echo "<script>location.href='$URL'</script>";
+            exit();
 		}else{
 			echo "Incorrect user/password.";
 		}

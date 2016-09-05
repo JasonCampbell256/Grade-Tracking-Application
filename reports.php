@@ -1,8 +1,4 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
 <html>
 	<head>
 		<title>Class Averages - Grade Tracking Application</title>
@@ -10,6 +6,16 @@
 	</head>
 		
 	<body>
+        <div id="wrapper">
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+            
+            <article id="one">
 		<?php
 			$classID  = $_GET['classID'];?> 
         
@@ -65,6 +71,8 @@
                     }
                 }
             } 
-        ?>	
+        ?>
+            </article>
+        </div>
 	</body>
 </html>

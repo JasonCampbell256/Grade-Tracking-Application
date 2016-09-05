@@ -1,12 +1,11 @@
-
-		<?php 
+    <?php 
 			session_start();
 			require('config.php');
 			require('functions.php');
 			
-			if (!auth($_SESSION['uname'])){
+			if (!auth($_SESSION['uname'])) {
 				notAuth();
-			}else{
+			} else {
 				
 			$firstName = firstName();
 

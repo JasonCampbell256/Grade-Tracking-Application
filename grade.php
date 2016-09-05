@@ -1,8 +1,5 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
+
 <html>
 	<head>
 		<title>Input Grades - Grade Tracking Application</title>
@@ -10,22 +7,33 @@
 	</head>
 		
 	<body>
-		<?php
-			$classID  = $_GET['classID'];?> 
+        <div id="wrapper">
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+            
+            <article id="one">
+            <?php $classID  = $_GET['classID'];?> 
 			
-		<form method="POST"> 
-			Student: <select name="student_id">
+            <form method="POST">
+                Student: 
+                <select name="student_id">
 				<?php 
                     //Query all students into class and create an arry
 				    $result = mysqli_query($link,"SELECT `student_id` FROM `Roster` WHERE `class_id` = '$classID'");
-				    while( $row = mysqli_fetch_assoc( $result)){
+                    while ( $row = mysqli_fetch_assoc($result)) {
 				        $new_array[] = $row["student_id"]; // Inside while loop
-				    }	
+				    }
+                    //Implode array for use in query
 				    $imp = implode(",", $new_array);
                     
                     //Display in the list, all students in the class
                     $result = mysqli_query($link,"SELECT * FROM `Students` WHERE `student_id` IN($imp)");
-				    while( $row = mysqli_fetch_array($result)){
+				    while ($row = mysqli_fetch_array($result)) {
 				        printf("<option value=\"%s\">%s, %s</option>", $row["student_id"], $row["last_name"], $row["first_name"]);
 				    }
 				?>
@@ -60,7 +68,7 @@
 		
 
 	
-		
-		
+            </article>
+        </div>
 	</body>
 </html>

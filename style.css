@@ -1,6 +1,54 @@
-* {
+body, html {
 	font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
-	background-color: #BFAFB2;
-	background-image:url("<svg><text>hello</text></svg>");
+    background-color: #4178D4;
+    height: 100%;
 }
+
+header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 2px;
+    padding-bottom: 1px;
+    width: auto;
+    height: auto;
+}
+
+header h1 {
+    text-align: center;
+}
+
+#wrapper {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    height: 100%;
+    padding-left: 12px;
+}
+
+nav {
+    width: 100%; 
+}
+
+nav ul {
+    padding-left: 1px;
+    list-style-type: none;
+}
+
+nav li {
+    margin-right: 4px;
+    width: auto;
+    height: 15px;
+    background-color: chartreuse;
+    padding: 10px;
+    display: inline;
+    border-style: solid;
+    border-width: 1px;
+}
+
+nav li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
 }

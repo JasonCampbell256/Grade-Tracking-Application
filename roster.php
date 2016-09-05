@@ -1,8 +1,5 @@
-<?php
-	require('functions.php');
-    require('config.php');
-	authHead();
-?>
+<!doctype html>
+
 <html>
 	<head>
 		<title>Class Roster - Grade Tracking Application</title>
@@ -10,7 +7,15 @@
 	</head>
 		
 	<body>
-	
+        <div id="wrapper">
+            <header>
+                <?php
+                    require('functions.php');
+                    require('config.php');
+                    authHead();
+                ?>
+            </header>
+	       <article id="one">
 		<table border = 1>
 			<tr>
 				<td>Student ID</td>
@@ -36,7 +41,7 @@
 		</table><br />
 		
 		<a href="addtoros.php?classID=<?php echo $test; ?>">Add Student to Roster</a>
-		
-		
+            </article>
+        </div>
 	</body>
 </html>
